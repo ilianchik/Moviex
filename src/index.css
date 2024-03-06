@@ -8,3 +8,19 @@ body {
   background-color: black;
   font-family: "Lato", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
+
+::-webkit-scrollbar {
+  width: 4px;
+  height: 3px;
+  border-radius: 2px;
+}
+::-webkit-scrollbar-track {
+  background: #09090a;
+}
+::-webkit-scrollbar-thumb {
+  background: red;
+  border-radius: 50px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #800000;
+}
