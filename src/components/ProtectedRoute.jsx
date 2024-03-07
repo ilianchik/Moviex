@@ -4,7 +4,7 @@ import { UserAuth } from "../context/AuthContext";
 function ProtectedRoute({ children }) {
   const { user } = UserAuth();
 
-  if (!user || Object.keys(user).length === 0) {
+  if (!user) {
     return <Navigate to="/login" />;
   } else {
     return children;
