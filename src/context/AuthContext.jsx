@@ -12,7 +12,7 @@ import bcrypt from "bcryptjs/dist/bcrypt";
 const AuthContext = createContext();
 
 export function AuthContextProvider({ children }) {
-  const [user, setUser] = useState(false);
+  const [user, setUser] = useState({});
 
   function signUp(email, password) {
     const hashedPassword = bcrypt.hashSync(password, 10);
