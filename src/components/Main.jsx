@@ -2,9 +2,12 @@ import { useState } from "react";
 import { useGetPopularMovies } from "../api/react-queries";
 import { truncateString } from "../utils/helpers";
 import { BeatLoader } from "react-spinners";
+import { useNavigate } from "react-router-dom";
 
 function Main() {
   const [randomMovie, setRandomMovie] = useState("");
+
+  const navigate = useNavigate();
 
   const { isPending: isPopularMoviesLoading, data: popularMovies } =
     useGetPopularMovies();
@@ -32,7 +35,10 @@ function Main() {
             {randomMovie.title}
           </h1>
           <div className="flex gap-4 my-4">
-            <button className="border bg-gray-300 text-black border-gray-300 py-2 px-5">
+            <button
+              onClick={() => navigate(`/movie/${randomMovie.id}`)}
+              className="border bg-gray-300 text-black border-gray-300 py-2 px-5"
+            >
               Play
             </button>
             <button className="border text-white border-gray-300 py-2 px-5">

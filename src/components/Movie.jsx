@@ -69,12 +69,21 @@ function Movie({ item }) {
         </p>
 
         {!like ? (
-          <p onClick={saveShow} className="absolute top-3 left-3 text-gray-300">
+          <p
+            onClick={(e) => {
+              e.stopPropagation();
+              saveShow();
+            }}
+            className="absolute top-3 left-3 text-gray-300"
+          >
             <FaRegHeart />
           </p>
         ) : (
           <p
-            onClick={() => deleteShow(item.id)}
+            onClick={(e) => {
+              e.stopPropagation();
+              deleteShow(item.id);
+            }}
             className="absolute top-3 left-3 text-gray-300"
           >
             <FaHeart />

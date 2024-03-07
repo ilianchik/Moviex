@@ -63,7 +63,10 @@ function SavedShows() {
                     {item?.title}
                   </p>
                   <p
-                    onClick={() => deleteShow(item.id)}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      deleteShow(item.id);
+                    }}
                     className="absolute text-gray-300 top-3 left-3 hover:text-[red]"
                   >
                     <AiOutlineClose />
