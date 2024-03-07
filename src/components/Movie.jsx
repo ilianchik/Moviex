@@ -10,7 +10,6 @@ function Movie({ item }) {
   const { user } = UserAuth();
 
   const userID = doc(db, "users", `${user?.email}`);
-  console.log(userID);
 
   async function saveShow() {
     if (user?.email) {

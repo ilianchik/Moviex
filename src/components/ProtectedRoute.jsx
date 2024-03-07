@@ -3,9 +3,9 @@ import { UserAuth } from "../context/AuthContext";
 
 function ProtectedRoute({ children }) {
   const { user } = UserAuth();
-  console.log(user);
+
   if (!user) {
-    return <Navigate to="/signup" />;
+    return <Navigate to="/login" />;
   } else {
     return children;
   }
