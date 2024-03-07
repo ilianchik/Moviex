@@ -5,12 +5,15 @@ import { UserAuth } from "../context/AuthContext";
 import { doc, onSnapshot, updateDoc } from "firebase/firestore";
 import { db } from "../firebase/firebase";
 import { AiOutlineClose } from "react-icons/ai";
+import { useNavigate } from "react-router-dom";
 
 function SavedShows() {
   const [movies, setMovies] = useState([]);
   const sliderRef = useRef();
 
   const { user } = UserAuth();
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     onSnapshot(doc(db, "users", `${user?.email}`), (doc) =>
@@ -46,6 +49,7 @@ function SavedShows() {
             ?.filter((item) => item.img)
             ?.map((item) => (
               <div
+                onClick={() => navigate(`/movie/${item.id}`)}
                 key={item.id}
                 className="w-[190px] sm:w-[230px] md:w-[250px] lg:w-[310px] inline-block cursor-pointer relative p-2"
               >
