@@ -1,11 +1,13 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { auth } from "../firebase/firebase";
+import { auth, db } from "../firebase/firebase";
 import {
   createUserWithEmailAndPassword,
   onAuthStateChanged,
   signInWithEmailAndPassword,
   signOut,
 } from "firebase/auth";
+import { doc, setDoc } from "firebase/firestore";
+import bcrypt from "bcryptjs/dist/bcrypt";
 
 const AuthContext = createContext();
 
@@ -13,7 +15,12 @@ export function AuthContextProvider({ children }) {
   const [user, setUser] = useState({});
 
   function signUp(email, password) {
-    return createUserWithEmailAndPassword(auth, email, password);
+    const hashedPassword = bcrypt.hashSync(password, 10);
+    createUserWithEmailAndPassword(auth, email, password);
+    setDoc(doc(db, "users", email), {
+      savedMovies: [],
+      password: hashedPassword,
+    });
   }
 
   function logOut() {
