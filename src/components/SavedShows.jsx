@@ -47,7 +47,7 @@ function SavedShows() {
             ?.map((item) => (
               <div
                 key={item.id}
-                className="w-[160px] sm:w-[200px] md:w-[240px] lg:w-[280px] inline-block cursor-pointer relative p-2"
+                className="w-[190px] sm:w-[230px] md:w-[250px] lg:w-[310px] inline-block cursor-pointer relative p-2"
               >
                 <img
                   className="w-full h-auto block"
@@ -60,7 +60,7 @@ function SavedShows() {
                   </p>
                   <p
                     onClick={() => deleteShow(item.id)}
-                    className="absolute text-gray-300 top-3 right-3 hover:text-[red]"
+                    className="absolute text-gray-300 top-3 left-3 hover:text-[red]"
                   >
                     <AiOutlineClose />
                   </p>

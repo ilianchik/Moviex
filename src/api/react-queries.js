@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
 const key = import.meta.env.VITE_MOVIES_API_KEY;
+
 const requests = {
   requestPopular: `https://api.themoviedb.org/3/movie/popular?api_key=${key}&language=en-US&page=2`,
   requestTopRated: `https://api.themoviedb.org/3/movie/top_rated?api_key=${key}&language=en-US&page=1`,
@@ -51,6 +52,33 @@ export function useGetHorrorMovies() {
     queryKey: ["getHorrorMovies"],
     queryFn: () =>
       axios.get(requests.requestHorror).then((res) => res.data.results),
+    staleTime: Infinity,
+    cacheTime: Infinity,
+  });
+}
+
+export function useGetMovieInfo(id) {
+  return useQuery({
+    queryKey: ["getMovieInfo", id],
+    queryFn: () =>
+      axios
+        .get(
+          `https://api.themoviedb.org/3/movie/${id}?api_key=${key}&language=en-US`
+        )
+        .then((res) => res.data),
+    staleTime: Infinity,
+    cacheTime: Infinity,
+  });
+}
+export function useGetMovieVideos(id) {
+  return useQuery({
+    queryKey: ["getMovieVideos", id],
+    queryFn: () =>
+      axios
+        .get(
+          `https://api.themoviedb.org/3/movie/${id}/videos?api_key=${key}&language=en-US`
+        )
+        .then((res) => res.data),
     staleTime: Infinity,
     cacheTime: Infinity,
   });
